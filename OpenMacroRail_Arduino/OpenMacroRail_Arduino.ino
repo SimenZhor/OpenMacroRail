@@ -316,7 +316,6 @@ void setup(void){
     bool exitWifiConnect = false;
     String ssid = "";
     String pass = "";
-    int stage = 0;
     Serial.setTimeout(20000); //20 seconds
     //Wait here til we get Wifi details
     while (!exitWifiConnect)

@@ -40,7 +40,14 @@ jobs:
             - name: SpeedyStepper
             - name: Preferences
             - name: WiFi
+              source-url: https://github.com/espressif/arduino-esp32.git
+              source-path: ./libraries/WiFi
+            - name: WebServer
+              source-url: https://github.com/espressif/arduino-esp32.git
+              source-path: ./libraries/WebServer
             - name: ESPmDNS
+              source-url: https://github.com/espressif/arduino-esp32.git
+              source-path: ./libraries/ESPmDNS
           sketch-paths: |
             - OpenMacroRail_Arduino
           enable-warnings-report: true

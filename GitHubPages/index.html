@@ -1,25 +1,77 @@
 <!DOCTYPE html>
 <html>
+<header>
+    <meta charset="utf-8">
+    <title>Quick-Start OpenMacroRail</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="module" src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module"></script>
+    <style type="text/css">
+        .bd-callout {
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #e9ecef;
+                border-left-color: rgb(233, 236, 239);
+                border-left-width: 1px;
+            border-left-width: .25rem;
+            border-radius: .25rem;
+        }
+
+        .bd-callout-info {
+            border-left-color: #03a9f4;
+            background-color:  #e6f7fe;
+        }
+        
+        .bd-callout-warning {
+            border-left-color: #f0ad4e;
+            background-color:  #fef7ee;
+        }
+        
+        .bd-callout-danger {
+            border-left-color: #f4035a;
+            background-color:  #fee6ef;
+        }
+        
+        .bd-callout + .bd-callout {
+            margin-top: -.25rem;
+        }
+    </style>
+</header>
 
 <body>
-    <h1>Sample project for demoing ESP Web Tools</h1>
+    <body class="htmlNoPages">
+        <div class="container-fluid d-flex flex-column col-12 gwd-div-juoq" id="MainDiv">
+                    <h5 class="display-5">Welcome to the OpenMacroRail Quick Start page</h5>
+                    
+                    <div id="main" style="display: none;">
+                        <br>
+                        <h5>
+                            To get started click the Connect button below
+                            <br>
+                        </h5>
+                        <esp-web-install-button id="installButton" manifest="ESPWebTools/manifest.json"></esp-web-install-button>
+                        <br>
+                        <div class="bd-callout bd-callout-info">
+                            <h5>Note:</h5>
+                            <p>Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
+                        </div>
+                    </div>
 
-    <div id="main" style="display: none;">
+                    <div id="notSupported" style="display: none;">
+                        <div class="bd-callout bd-callout-danger">
+                            <h5 >Unsupported browser</h5>    
+                            <p>
+                                Your browser does not support the Web Serial API. <br>
+                                Try to reopen the page in Chrome, Edge or Opera.
+                            </p>
+                        </div>
+                    </div>
 
-        <br>
-        <script type="module" src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module"></script>
+        </div>
 
-        <esp-web-install-button id="installButton" manifest="ESPWebTools/manifest.json"></esp-web-install-button>
-        <br>
-        <p>NOTE: Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
-    </div>
-    <div id="notSupported" style="display: none;">
-        <h2>Unsupported browser</h2>
-        <p>
-            Your browser does not support the Web Serial API. <br>
-            Try Chrome, Edge or Opera.
-        </p>
-    </div>
+    
 
 
     <script>

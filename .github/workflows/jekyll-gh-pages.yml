@@ -42,6 +42,7 @@ jobs:
           libraries: | 
             - name: SpeedyStepper
               source-url: https://github.com/Stan-Reifel/SpeedyStepper.git 
+            - name: WiFiManager
           sketch-paths: |
             - OpenMacroRail_Arduino
           enable-warnings-report: true

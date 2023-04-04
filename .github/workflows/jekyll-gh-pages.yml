@@ -36,21 +36,13 @@ jobs:
           platforms: |
             - name: esp32:esp32
               source-url: https://dl.espressif.com/dl/package_esp32_index.json
-          libraries: |
+          libraries: | # No need to specify ESP-libraries as these are installed with the platform (on the line above)
             - name: SpeedyStepper
             - name: Preferences
-            - name: WiFi
-              source-url: https://github.com/espressif/arduino-esp32.git
-              source-path: ./libraries/WiFi
-            - name: WebServer
-              source-url: https://github.com/espressif/arduino-esp32.git
-              source-path: ./libraries/WebServer
-            - name: ESPmDNS
-              source-url: https://github.com/espressif/arduino-esp32.git
-              source-path: ./libraries/ESPmDNS
           sketch-paths: |
             - OpenMacroRail_Arduino
           enable-warnings-report: true
+          verbose: true
 
       
 

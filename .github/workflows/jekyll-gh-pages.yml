@@ -47,7 +47,8 @@ jobs:
             - OpenMacroRail_Arduino
           enable-warnings-report: true
           verbose: true
-          cli-compile-flags: -e
+          cli-compile-flags: |
+            - --export-binaries
 
       # Copy binaries to GitHubPages folder for publishing
       - name: Copy compiled binaries to deployment folder

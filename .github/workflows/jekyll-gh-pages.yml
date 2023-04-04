@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v3
 
       # Build Arduino Code
-      - uses: arduino/compile-sketches@v1.1.0
+      - uses: arduino/compile-sketches@v1
         name: Compile Arduino code
         with: 
           fqbn: "esp32:esp32:esp32"
@@ -48,7 +48,6 @@ jobs:
           verbose: true
           cli-compile-flags: |
             - --export-binaries
-            - --warnings="all"
 
       # Copy binaries to GitHubPages folder for publishing
       - name: Copy compiled binaries to deployment folder

@@ -28,13 +28,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
+      # Build Arduino Code
+      - uses: arduino/compile-sketches@v1
+        with: 
+          fqbn: "esp32:esp32:esp32"
+          platforms: |
+            - name: esp32:esp32
+              source-url: https://dl.espressif.com/dl/package_esp32_index.json
+          libraries: | # No need to specify ESP-libraries as these are installed with the platform (on the line above). Downloading SpeedyStepper from source to get correct casing on import of Arduino.h (spelled arduino.h in the version from Arduino Libary Manager)
+            - name: SpeedyStepper
+              source-url: https://github.com/Stan-Reifel/SpeedyStepper.git 
+            - name: Preferences
+          sketch-paths: |
+            - OpenMacroRail_Arduino
+          enable-warnings-report: true
+          verbose: true
+
+      
+
+      # Build GitHub Page
       - name: Setup Pages
         uses: actions/configure-pages@v3
+
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./GitHubPages
           destination: ./_site
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
 

@@ -37,12 +37,11 @@ jobs:
             - name: esp32:esp32
               source-url: https://dl.espressif.com/dl/package_esp32_index.json
           libraries: |
-            - name: WiFiClient
+            - name: SpeedyStepper
+            - name: Preferences
             - name: WiFi
             - name: WebServer
             - name: ESPmDNS
-            - name: SpeedyStepper
-            - name: Preferences
           sketch-paths: |
             - OpenMacroRail_Arduino
           enable-warnings-report: true

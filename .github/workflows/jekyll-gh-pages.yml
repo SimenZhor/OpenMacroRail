@@ -40,7 +40,6 @@ jobs:
             - name: SpeedyStepper
             - name: Preferences
             - name: WiFi
-            - name: WebServer
             - name: ESPmDNS
           sketch-paths: |
             - OpenMacroRail_Arduino

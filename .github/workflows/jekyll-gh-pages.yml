@@ -36,8 +36,9 @@ jobs:
           platforms: |
             - name: esp32:esp32
               source-url: https://dl.espressif.com/dl/package_esp32_index.json
-          libraries: | # No need to specify ESP-libraries as these are installed with the platform (on the line above)
+          libraries: | # No need to specify ESP-libraries as these are installed with the platform (on the line above). Downloading SpeedyStepper from source to get correct casing on import of Arduino.h (spelled arduino.h in the version from Arduino Libary Manager)
             - name: SpeedyStepper
+              source-url: https://github.com/Stan-Reifel/SpeedyStepper.git 
             - name: Preferences
           sketch-paths: |
             - OpenMacroRail_Arduino

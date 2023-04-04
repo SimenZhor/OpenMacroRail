@@ -31,12 +31,15 @@ jobs:
 
       # Build Arduino Code
       - uses: arduino/compile-sketches@v1
+        name: Compile Arduino code
         with: 
           fqbn: "esp32:esp32:esp32"
           platforms: |
             - name: esp32:esp32
-              source-url: https://dl.espressif.com/dl/package_esp32_index.json
-          libraries: | # No need to specify ESP-libraries as these are installed with the platform (on the line above). Downloading SpeedyStepper from source to get correct casing on import of Arduino.h (spelled arduino.h in the version from Arduino Libary Manager)
+              source-url: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+          # No need to specify ESP-libraries as these are installed with the platform (on the line above). 
+          # Downloading SpeedyStepper from source to get correct casing on import of Arduino.h (spelled arduino.h in the version from Arduino Libary Manager)
+          libraries: | 
             - name: SpeedyStepper
               source-url: https://github.com/Stan-Reifel/SpeedyStepper.git 
             - name: Preferences
@@ -44,20 +47,35 @@ jobs:
             - OpenMacroRail_Arduino
           enable-warnings-report: true
           verbose: true
+          cli-compile-flags: -e
 
-      
+      # Copy binaries to GitHubPages folder for publishing
+      - name: Copy compiled binaries to deployment folder
+        run: |
+          mkdir GitHubPages/ESPWebTools/esp32Firmware
+          
+          # Copy compiled binaries that were exported by the `-e` flag in the arduino/compile-sketches task
+          # Maintain folder structure, for cases where we are compiling for multiple board versions 
+          # If we were sure that we would never need to compile for anything other then esp32:esp32:esp32, we could have used this command instead: cp -r OpenMacroRail_Arduino/build/esp32.esp32.esp32/*.bin GitHubPages/ESPWebTools/esp32Firmware
+          cd OpenMacroRail_Arduino/build
+          find . -print | grep -i .bin$ | xargs -i cp --parent {} ../../GitHubPages/ESPWebTools/esp32Firmware/
+          cd ../..
+          
+          # Copy boot_app0.bin to the esp32Firmware folder. This file will be common for all esp32 boards (i think) 
+          # Using a version agnostic search to find the file. grep -m 1 makes sure only one file is copied in case multiple versions are installed.
+          find /home/runner/.arduino15/packages/esp32/hardware/esp32/ -type f | grep -i -m 1 boot_app0.bin$ | xargs -i cp {} GitHubPages/ESPWebTools/esp32Firmware
 
       # Build GitHub Page
-      - name: Setup Pages
+      - name: Setup Github Page
         uses: actions/configure-pages@v3
 
-      - name: Build with Jekyll
+      - name: Build GitHub Page with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./GitHubPages
           destination: ./_site
 
-      - name: Upload artifact
+      - name: Upload GitHub Page Artifact
         uses: actions/upload-pages-artifact@v1
 
   # Deployment job

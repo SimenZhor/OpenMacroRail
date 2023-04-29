@@ -41,7 +41,7 @@ float overshootDistance = 0.5; //mm (used by goToStartPoint() to counteract mech
 
 //Non adjustable settings
 float triggerDelay = 0.25; //s
-const bool invert_directions = false; // Use this variable to swap behavior of forwards- and backwards-buttons (instead of rewiring motor)
+const bool invert_directions = true; // Use this variable to swap behavior of forwards- and backwards-buttons (instead of rewiring motor)
 const uint MAX_LED_BRIGHTNESS = 255;
 const char* localDomainName = "OpenMacroRail"; // This enables http://OpenMacroRail.local (if your router supports it).
 

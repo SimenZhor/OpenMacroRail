@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<header>
+<head>
     <meta charset="utf-8">
     <title>Quick-Start OpenMacroRail</title>
     <meta name="viewport" content="width=device-width">
@@ -9,7 +9,7 @@
     <script type="module" src="https://unpkg.com/esp-web-tools@7.3.1/dist/web/install-button.js?module"></script>
     <style type="text/css">
         .bd-callout {
-            padding: 1.25rem;
+            padding: 1rem;
             margin-top: 1.25rem;
             margin-bottom: 1.25rem;
             border: 1px solid #e9ecef;
@@ -37,37 +37,141 @@
         .bd-callout + .bd-callout {
             margin-top: -.25rem;
         }
+
+        h6{
+            font-weight: 600 !important;
+        }
     </style>
-</header>
+</head>
 
 <body>
     <body class="htmlNoPages">
         <div class="container-fluid d-flex flex-column col-12 gwd-div-juoq" id="MainDiv">
-                    <h5 class="display-5">Welcome to the OpenMacroRail Quick Start page</h5>
-                    
-                    <div id="main" style="display: none;">
-                        <br>
-                        <h5>
-                            To get started click the Connect button below
-                            <br>
-                        </h5>
-                        <esp-web-install-button id="installButton" manifest="ESPWebTools/manifest.json"></esp-web-install-button>
-                        <br>
+            <div id="intro">
+                <h5 class="display-5">Quick-Start for OpenMacroRail</h5>
+                
+                <br>
+                <h5>
+                    Install the OpenMacroRail Firmware from your browser
+                </h5>
+                <p style="margin-bottom: 0;">
+                    By clicking the Connect button below and following the instructions you will be able to install the OpenMacroRail firmware directly from your browser. <br>
+                    <br>
+                    No need to install a bunch of software that you will never use again! 
+                </p>
+            </div>
+            <div id="supportedBrowser" style="display: none;">
+                <div class="bd-callout bd-callout-info">
+                    <h6>Note:</h6>
+                    <p style="margin-bottom: 0;">Make sure to close anything using your devices COM port (e.g. Serial monitor)</p>
+                </div>
+                For more detailed instructions, see the Step by step guide below.
+                <br>
+                <esp-web-install-button id="installButton" manifest="ESPWebTools/manifest.json"></esp-web-install-button>
+                <br>
+                <br>
+            </div>
+            <div id="notSupportedBrowser" style="display: none;">
+                <div class="bd-callout bd-callout-danger">
+                    <h6>Unsupported browser:</h6>
+                    <p style="margin-bottom: 0;">
+                        Your browser does not support the Web Serial API. <br>
+                        Reopen the page in Chrome, Edge or Opera to see the Connect button.
+                    </p>
+                </div>
+            </div>
+            <div id="guide">
+                <h5>Step by step guide:</h5>
+                <p>
+                    OpenMacroRail uses a microcontroller board, ESP32, that is not a part of the default Arduino family. Setting up the development environment
+                    for this board may feel a bit overwhelming to those who are not familiar with the process. Therefore, OpenMacroRail supports flashing pre-built 
+                    firmware directly from your browser!
+                </p>
+                <h6>
+                    Install the OpenMacroRail Firmware:
+                </h6>
+                <ol>
+                    <li>
+                        Make sure the ESP32 you want to flash is connected to your computer via USB
+                    </li>
+                    <li>
+                        Click the blue "Connect" button above
+                    </li>
+                    <li>
+                        Select the serial device that corresponds to your ESP32 <br>
+                        <img src="images/1-1-SelectSerialDevice.png" alt="Select the serial device that corresponds to your ESP32" width="300">
+                    </li>
+                    <li>
+                        Click the Install button. This will start flashing the latest release of the OpenMacroRail Firmware to your device. <br>
+                        <img src="images/1-2-InstallFirmware.png" alt="Connect to the WiFi network called OpenMacroRail-AP" width="300">
+                    </li>
+                    <li>
+                        Wait for the installation to complete.
                         <div class="bd-callout bd-callout-info">
-                            <h5>Note:</h5>
-                            <p>Make sure to close anything using your devices com port (e.g. Serial monitor)</p>
-                        </div>
-                    </div>
-
-                    <div id="notSupported" style="display: none;">
-                        <div class="bd-callout bd-callout-danger">
-                            <h5 >Unsupported browser</h5>    
-                            <p>
-                                Your browser does not support the Web Serial API. <br>
-                                Try to reopen the page in Chrome, Edge or Opera.
+                            <h6>Tip:</h6>
+                            <p style="margin-bottom: 0;">
+                                Clicking "Logs & Console -> Reset Device" once the installation completes will 
+                                help you find the IP address that the ESP32 is assigned by your network router
+                                once you have completed the steps in the next section.
                             </p>
                         </div>
-                    </div>
+                    </li>
+                </ol>
+                <h6>
+                    Connect the OpenMacroRail to your preferred device:
+                </h6>
+                <p>
+                    Once the firmware is done flashing you can connect it to the device you want to use to control your OpenMacroRail. 
+                    If this is your first time connecting to OpenMacroRail, or if OpenMacroRail can't find any known networks,
+                    the ESP32 will set up an access point named "OpenMacroRail-AP" that can be used to enter WiFi credentials for any available network.
+                </p>
+                <ol>
+                    <li>
+                        Connect to the WiFi network called OpenMacroRail-AP <br>
+                        <img src="images/2-1-ConnectToAP.JPG" alt="Connect to the WiFi network called OpenMacroRail-AP" width="300">
+                    </li>
+                    <li>
+                        Wait for the prompt to load and click the Configure Wifi button <br>
+                        <img src="images/2-2-ConfigureWiFi.JPG" alt="Wait for the prompt to load and click the Configure Wifi button" width="300">
+                    </li>
+                    <li>
+                        Select your prefered WiFi network and enter credentials <br>
+                        <img src="images/2-3-Credentials.JPG" alt="Select your WiFi network and enter your credentials" width="300">
+                    </li>
+                    <li>
+                        Make sure your device (phone, laptop, desktop computer) has re-connected to the network that OpenMacroRail is connected to. <br>
+                        <div class="bd-callout bd-callout-warning">
+                            <h6>Warning:</h6>
+                            <p style="margin-bottom: 0;">
+                                Connect to a 2.4 GHz network! <br>
+                                Some network routers present two networks with the same name, where one is using a 2.4 GHz carrier frequency and the other is using 5 GHz.
+                                Your device may know both of these networks, so make sure it is connected to the 2.4 GHz version as this is the only type that is 
+                                supported by ESP32.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        Plug 12V power in the power jack to enable the motor.
+                    </li>
+                    <li>
+                        You can now disconnect the USB cable and start using OpenMacroRail! 
+                    </li>
+                    <li>
+                        In a web browser, enter the URL "OpenMacroRail.local" to access the user interface<br>
+                        <img src="images/3-1-UserInterface.png" alt="OpenMacroRail user interface shown on an iPhone" width="300">
+                        <div class="bd-callout bd-callout-info">
+                            <h6>Note:</h6>
+                            <p style="margin-bottom: 0;">
+                                If this does not work, type in the IP address of OpenMacroRail instead.
+                                The IP address can be found by reconnecting the USB cable and clicking the Connect button on the 
+                                top of this page, then "Logs & Console -> Reset Device"
+                            </p>    
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            
 
         </div>
 
@@ -76,11 +180,11 @@
 
     <script>
         if (navigator.serial) {
-            document.getElementById("notSupported").style.display = 'none';
-            document.getElementById("main").style.display = 'block';
+            document.getElementById("notSupportedBrowser").style.display = 'none';
+            document.getElementById("supportedBrowser").style.display = 'block';
         } else {
-            document.getElementById("notSupported").style.display = 'block';
-            document.getElementById("main").style.display = 'none';
+            document.getElementById("notSupportedBrowser").style.display = 'block';
+            document.getElementById("supportedBrowser").style.display = 'none';
         }
     </script>
 

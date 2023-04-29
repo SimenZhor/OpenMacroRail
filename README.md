@@ -1,4 +1,5 @@
 # OpenMacroRail Firmware and Web-interface
+[![Build firmware and deploy GitHub Page](https://github.com/appliedprocrastination/OpenMacroRail/actions/workflows/jekyll-gh-pages.yml/badge.svg)](https://github.com/appliedprocrastination/OpenMacroRail/actions/workflows/jekyll-gh-pages.yml)
 ## Summary
 The OpenMacroRail Firmware provides a web-interface for accurately moving a camera in small increments in order to do focus stacking. The OpenMacroRail project also consists of a [DIY-friendly circuit-board design](https://github.com/AppliedProcrastination/Motorized-Macro-Rail) that can be manufactured for around $30 if you have access to a soldering iron. The circuit board is designed for photographers with electronics skills rather than engineers with photography skills. In addition, some external hardware is also required (like a macro slider, a motor, and a camera). 
 

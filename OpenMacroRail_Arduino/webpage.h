@@ -307,9 +307,11 @@ R"(
             integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
             crossorigin="anonymous"></script>
         <script>
-            window.onload = refreshFormsAndStats;
+            window.onload = refreshSettingsAndStats;
+            // Set up timers to poll the ESP32-server for changes to stats and settings. 
+            // This keeps those entries in sync across devices accessing the server.
             let refreshStatsInterval = window.setInterval(refreshStats, 1000);
-            let refreshFormsInterval = window.setInterval(refreshForms, 30000);
+            let refreshSettingsInterval = window.setInterval(refreshSettings, 30000);
 
             var imperialUnitsEnabled = false;
 
@@ -339,7 +341,7 @@ R"(
                 }
             }
 
-            function insertForms(datastring) {
+            function insertSettings(datastring) {
                 console.log("Ajax result: " + datastring);
                 let arr = datastring.split(",")
                 for (let i = 0; i < arr.length; i++) {
@@ -396,11 +398,11 @@ R"(
                 });
             }
 
-            function refreshForms() {
+            function refreshSettings() {
                 $.ajax({
                     "url": "refreshForms",
                     "success": function (result) {
-                        insertForms(result);
+                        insertSettings(result);
                     }
                 });
             }
@@ -414,9 +416,9 @@ R"(
                 }
             }
 
-            function refreshFormsAndStats() {
+            function refreshSettingsAndStats() {
                 refreshUnitOfMeasurement();
-                refreshForms();
+                refreshSettings();
                 refreshStats();
                 updateLEDBrightnessSlider()
             }
@@ -507,24 +509,24 @@ R"(
             }
 
             function findMetricUnit(valueNode, recurse = false) {
-                    // Find sibling span to check if it contains a unit that needs conversion
-                    let unitNode = valueNode.parentNode.querySelector("[id^=unit]");
-                    if (unitNode == null && recurse) {
-                        // Try same test one more level up (this is how forms are structured) 
-                        return findMetricUnit(valueNode.parentNode, recurse = false);
-                    }
-                    var unit = null;
-                    if (unitNode != null) {
-                        if (unitNode.id.includes("distance")) {
-                            unit = "mm";
-                        } else if (unitNode.id.includes("speed")) {
-                            unit = "mm/s";
-                        } else if (unitNode.id.includes("accelleration")) {
-                            unit = "mm/s<sup>2</sup>";
-                        }
-                    }
-                    return unit;
+                // Find sibling span to check if it contains a unit that needs conversion
+                let unitNode = valueNode.parentNode.querySelector("[id^=unit]");
+                if (unitNode == null && recurse) {
+                    // Try same test one more level up (this is how forms are structured) 
+                    return findMetricUnit(valueNode.parentNode, recurse = false);
                 }
+                var unit = null;
+                if (unitNode != null) {
+                    if (unitNode.id.includes("distance")) {
+                        unit = "mm";
+                    } else if (unitNode.id.includes("speed")) {
+                        unit = "mm/s";
+                    } else if (unitNode.id.includes("accelleration")) {
+                        unit = "mm/s<sup>2</sup>";
+                    }
+                }
+                return unit;
+            }
 
             function convertDocumentToImperialUnits(){
                 // Find all nodes that hods a unit that is not common between metric an imperial (time units are common and do not need to be updated)
@@ -602,7 +604,7 @@ R"(
                 
                 // Update values by requesting original values from MCU
                 // This prevents loss of presicion by converting back from imperial to metric
-                refreshFormsAndStats();
+                refreshSettingsAndStats();
             }
 
             function toggleImperialUnits(){

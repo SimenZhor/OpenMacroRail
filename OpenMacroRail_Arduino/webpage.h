@@ -8,7 +8,13 @@ R"(
         <meta name="viewport" content="width=device-width">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <style type="text/css" id="gwd-text-style">
+        <style type="text/css">
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0px;
+                background-color: transparent;
+            }
             p {
                 margin: 0px;
             }
@@ -23,18 +29,6 @@ R"(
 
             h3 {
                 margin: 0px;
-            }
-        </style>
-        <style type="text/css">
-            html,
-            body {
-                width: 100%;
-                height: 100%;
-                margin: 0px;
-            }
-
-            body {
-                background-color: transparent;
             }
 
             .gwd-div-juoq {

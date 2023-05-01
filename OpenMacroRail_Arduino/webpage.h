@@ -51,6 +51,7 @@ R"(
                 font-size: 1em;
             }
 
+            /* This class is used on buttons that will be pressed repeatedly to prevent accidental zooms */
             .preventTapToZoom {
                 touch-action: manipulation;
                 -webkit-user-select: none;
@@ -73,11 +74,22 @@ R"(
             width: calc(4rem + 0.75rem);
             border-radius: 5rem;
             }
+            
+            /* Limit max width for large screens to 720px */
+            @media screen and (min-width: 992px){
+                .container { max-width: 720px; }
+            }
+            @media screen and (min-width: 1200px){
+                .container { max-width: 720px; }
+            }
+            @media screen and (min-width : 1400px) {
+                .container { max-width: 720px; } 
+            }
         </style>
     </head>
 
     <body class="htmlNoPages">
-        <div class="container-fluid d-flex flex-column col-12 gwd-div-juoq" id="MainDiv">
+        <div class="container" id="MainDiv">
             <div class="row g-3 h-40" style="padding-top: 1em; padding-bottom: 1em;" id="TopSection">
                 <div class="d-grid col-8 g-1" id="TopSettings">
                     <p class="display-6" style="font-size: 1.3em;">Current position:</p>
@@ -158,22 +170,22 @@ R"(
                             <div class="row g-1" id="statsSection" >
                                 <div class="col-8 ">Start point</div>
                                 <div class="col-4 " id="startPointStatLabel"><span id="startPointValue">0.0</span> <span id="unit-distance-startPoint">mm</span></div>
-    
+
                                 <div class="col-8 ">End point</div>
                                 <div class="col-4 " id="endPointStatLabel"><span id="endPointValue">0.0</span> <span id="unit-distance-endPoint">mm</span></div>
-    
+
                                 <div class="col-8 ">Total movement distance</div>
                                 <div class="col-4 " id="distanceStatLabel"><span id="distanceValue">0.0</span> <span id="unit-distance-distance">mm</span></div>
-    
+
                                 <div class="col-8 ">Increment</div>
                                 <div class="col-4 " id="incrementStatLabel"><span id="incrementValue">0.0</span> <span id="unit-distance-increment">mm</span></div>
-    
+
                                 <div class="col-8 ">Remaining pictures</div>
                                 <div class="col-4 " id="remainingPicturesStatLabel"><span id="remainingPicturesValue">0</span></div>
-    
+
                                 <div class="col-8 ">Remaining shooting time</div>
                                 <div class="col-4 " id="remainingShootTimeStatLabel"><span id="remainingShootingTimeValue">0.0</span> min</div>
-    
+
                                 <div class="col-8 ">Total shooting time</div>
                                 <div class="col-4 " id="totalShootTimeStatLabel"><span id="totalShootingTimeValue">0.0</span> min</div>
                             </div>

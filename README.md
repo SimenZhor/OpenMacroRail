@@ -28,15 +28,16 @@ The development environment for this project is slightly more involved than a ge
 1. Install "esp32 by Espressif Systems" from the Arduino Boards Manager.
 1. (Planned in the future. Not currently needed) Install ESP32 filesystem upload plugin for Arduino IDE (SPIFFS = SPI-Flash File System): https://github.com/me-no-dev/arduino-esp32fs-plugin
 1. Install the following libraries via the Arduino Library Manager: 
-    - WiFiManager (by tzapu) 
-    - SpeedyStepper (by S.Reifel)
+    - WiFiManager (by tablatronix https://github.com/tzapu/WiFiManager) 
+    - SpeedyStepper (by S.Reifel https://github.com/Stan-Reifel/SpeedyStepper)
 
         Note: The version of SpeedyStepper available in the Arduino Library Manager contains a typo in an import header that stops it from working on Linux. Download directly from the [GitHub repository](https://github.com/Stan-Reifel/SpeedyStepper.git) to fix this error.
+1. Select "Tools->Board->ESP32 Arduino->ESP32 Dev Module"
 1. Build and flash firmware
 1. Connect to WiFi Access Point named "OpenMacroRail-AP"
 1. Enter your WiFi credentials (these will be stored in EEPROM on the ESP32)
 1. Connect to the same network with your mobile phone or computer
-1. In a web browser, on your mobile phone or computer, enter the URL `OpenMacroRail.local`
+1. In a web browser, on your mobile phone or computer, enter the URL [OpenMacroRail.local](http://OpenMacroRail.local)
     1. Alternatively: 
     
         Set Baud Rate in Serial Monitor to 115200 and wait for IP Address to show up
